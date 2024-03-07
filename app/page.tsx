@@ -1,21 +1,14 @@
-import { signIn, signOut } from "@/actions";
-import { auth } from "@/auth";
-import BtnSubmitForm from "@/components/BtnSubmitForm";
-import Profile from "@/components/profile";
+import TopicCreateForm from "@/components/topics/topic-create-form";
 
-export default async function Home() {
-  const session = await auth();
+export default function Home() {
   return (
-    <main>
-      <h1>LOL</h1>
-      <form action={signIn}>
-        <BtnSubmitForm label="Sign In" color="primary" />
-      </form>
-      <form action={signOut}>
-        <BtnSubmitForm label="Sign Out" variant="ghost" />
-      </form>
-      {session?.user ? <div>Signed in</div> : <div>Signed out</div>}
-      <Profile />
-    </main>
+    <div className="grid grid-cols-4 gap-4 p-4">
+      <div className="col-span-3 ">
+        <h1 className="text-xl m-2">Top Posts</h1>
+      </div>
+      <div>
+        <TopicCreateForm />
+      </div>
+    </div>
   );
 }

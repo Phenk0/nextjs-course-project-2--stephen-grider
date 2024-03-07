@@ -1,4 +1,3 @@
-"use server";
 import {
   Input,
   Navbar,
@@ -6,15 +5,10 @@ import {
   NavbarContent,
   NavbarItem
 } from "@nextui-org/react";
-import { auth } from "@/auth";
 import Link from "next/link";
-import BtnSubmitForm from "@/components/BtnSubmitForm";
-import { signIn } from "@/actions";
-import PopoverUserMenu from "@/components/PopoverUserMenu";
+import HeaderAuth from "@/components/header-auth";
 
-export default async function Header() {
-  const session = await auth();
-
+export default function Header() {
   return (
     <Navbar isBordered className="mb-6 shadow">
       <NavbarBrand>
@@ -28,27 +22,7 @@ export default async function Header() {
         </NavbarItem>{" "}
       </NavbarContent>
       <NavbarContent as="div" justify="end">
-        <NavbarItem>
-          {!session?.user ? (
-            <div className="flex gap-4">
-              <form action={signIn}>
-                <BtnSubmitForm
-                  label="Sign In"
-                  color="secondary"
-                  variant="bordered"
-                />
-              </form>
-              <form action={signIn}>
-                <BtnSubmitForm label="Sign Un" color="primary" variant="flat" />
-              </form>
-            </div>
-          ) : (
-            <PopoverUserMenu
-              name={session.user.name as string}
-              image={session.user.image as string}
-            />
-          )}
-        </NavbarItem>
+        <HeaderAuth />
       </NavbarContent>
     </Navbar>
   );

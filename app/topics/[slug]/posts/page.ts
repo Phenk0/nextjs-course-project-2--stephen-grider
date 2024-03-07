@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
+import paths from "@/paths";
 
 export default function PostsPage({ params }: { params: { slug: string } }) {
-  redirect(`/topics/${params.slug}`);
+  redirect(paths.topicShow(params.slug));
 }
