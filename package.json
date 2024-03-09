@@ -1,12 +1,13 @@
 {
   "name": "nextjs-course-project-2-auth--stephen-grider",
-  "version": "0.1.0",
+  "version": "0.9.1",
   "private": false,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@auth/core": "^0.28.0",
