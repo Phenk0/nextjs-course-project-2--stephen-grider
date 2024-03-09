@@ -1,6 +1,7 @@
 import PostCreateForm from "@/components/posts/post-create-form";
 import PostList from "@/components/posts/post-list";
 import { fetchPostsByTopicSlug } from "@/db/queries/posts";
+import { db } from "@/db";
 
 type Props = {
   params: {
@@ -21,4 +22,11 @@ export default function TopicShowPage({ params }: Props) {
       </div>
     </div>
   );
+}
+
+export async function generateStaticParams() {
+  const topics = await db.topic.findMany();
+  return topics.map((topic) => ({
+    slug: topic.slug
+  }));
 }
