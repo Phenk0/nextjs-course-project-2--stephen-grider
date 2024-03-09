@@ -5,6 +5,7 @@ import CommentCreateForm from "@/components/comments/comment-create-form";
 import paths from "@/paths";
 import { Suspense } from "react";
 import PostSkeleton from "@/components/posts/post-skeleton";
+import { db } from "@/db";
 
 interface PostShowPageProps {
   params: {
@@ -28,4 +29,16 @@ export default async function PostShowPage({ params }: PostShowPageProps) {
       <CommentList postId={postId} />
     </div>
   );
+}
+
+export async function generateStaticParams() {
+  const posts = await db.post.findMany({
+    include: {
+      topic: { select: { slug: true } }
+    }
+  });
+  return posts.map((post) => ({
+    slug: post.topic.slug,
+    postId: post.id
+  }));
 }
