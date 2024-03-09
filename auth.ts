@@ -23,7 +23,7 @@ export const {
       clientSecret: GITHUB_CLIENT_SECRET
     })
   ]
-  /* callbacks: {
+  /*  callbacks: {
     async session({ session, user }) {
       if (session && user) session.user.id = user.id;
 

@@ -1,7 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { signIn, signOut } from "@/actions";
-import BtnSubmitForm from "@/components/BtnSubmitForm";
+import BtnSubmitForm from "@/components/common/BtnSubmitForm";
 import {
   Avatar,
   NavbarItem,
